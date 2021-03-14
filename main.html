@@ -1,0 +1,144 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+  <script src="http://bbecquet.github.io/Leaflet.PolylineDecorator/dist/leaflet.polylineDecorator.js" crossorigin=""></script>
+  <style>
+  #mapid { height: 100%; width: 100% }
+
+  </style>
+</head>
+
+<body>
+ <div id="mapid"></div>
+<script>
+
+const coords='Bethesda Chevy Chase High School;38.986452,-77.088586;Montgomery Blair High School;39.018365,-77.012244;James Hubert Blake High School;39.113393,-77.017945;Winston Churchill High School;39.043939,-77.173206;Clarksburg High School;39.226205,-77.265788;Damascus High School;39.282012,-77.210197;Albert Einstein High School;39.03931,-77.067289;Gaithersburg High School;39.135721,-77.19472;Walter Johnson High School;39.025888,-77.129757;John F. Kennedy High School;39.065755,-77.038997;Col. Zadok Magruder High School;39.131352,-77.118525;Richard Montgomery High School;39.079334,-77.146927;Northwest High School;39.151665,-77.279615;Northwood High School;39.035741,-77.02237;Paint Branch High School;39.086363,-76.947634;Poolesville High School;39.143382,-77.418722;Quince Orchard High School;39.11593,-77.254077;Rockville High School;39.086677,-77.11859;Seneca Valley High School;39.173936,-77.263658;Sherwood High School;39.148323,-77.018527;Springbrook High School;39.058208,-77.005891;Watkins Mill High School;39.183588,-77.216129;Wheaton High School;39.059976,-77.067477;Walt Whitman High School;38.981663,-77.127622;Thomas S. Wootton High School;39.076736,-77.183236'
+
+var mymap = L.map('mapid').setView([39.086677,-77.11859], 10);
+
+  var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(mymap);
+
+var schools = coords.split(";")
+var mapschools = {}
+
+var scname
+var tcoords
+for (var i=0;i<schools.length;i++) {
+  if (i%2 == 0){
+    scname = schools[i]
+  } else{
+    tcoords = [parseFloat(schools[i].split(",")[0]),parseFloat(schools[i].split(",")[1])]
+    mapschools[scname]=tcoords
+  }
+}
+
+var stage = 0
+function createvector(e){
+  stage = stage + 1
+  if (stage==1){
+
+  }
+}
+
+
+
+
+var schoolnames = Object.keys(mapschools)
+var mapschoolspick =schoolnames.slice(0)
+
+start = 0
+dest = 0
+while (start == dest) {
+  start = Math.floor(Math.random()*25)
+  dest = Math.floor(Math.random()*25)
+}
+
+for (var j=0;j<schoolnames.length;j++){
+  if (j==start){
+    var circle = L.circle(mapschools[schoolnames[j]], {
+    color: 'yellow',
+    fillColor: 'yellow',
+    fillOpacity: 1,
+    radius: 500
+  }).addTo(mymap);
+  circle.bindPopup(schoolnames[j]);
+  } else if (j==dest){
+    var circle = L.circle(mapschools[schoolnames[j]], {
+    color: 'green',
+    fillColor: 'green',
+    fillOpacity: 1,
+    radius: 500
+  }).addTo(mymap);
+  circle.bindPopup(schoolnames[j]);
+  } else{
+    var circle = L.circle(mapschools[schoolnames[j]], {
+    color: 'black',
+    fillColor: 'black',
+    fillOpacity: 1,
+    radius: 500
+  }).addTo(mymap);
+  circle.bindPopup(schoolnames[j]);
+  }
+}
+
+var random = Math.random() * 25;
+var chosen = mapschools[mapschoolspick[Math.floor(random)]]
+mapschoolspick.pop(Math.floor(random))
+//console.log(mapschoolspick)
+var random = Math.random() * 24;
+var chosen2 = mapschools[mapschoolspick[Math.floor(random)]]
+mapschoolspick.pop(Math.floor(random))
+
+
+latlngs = [chosen,chosen2]
+
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(mymap);
+
+var decorator = L.polylineDecorator(polyline, {
+    patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {color:"red",stroke: true}})}
+    ],color:"red",fillColor: 'red'
+}).addTo(mymap);
+
+random = Math.random() * 23;
+chosen = mapschools[mapschoolspick[Math.floor(random)]]
+mapschoolspick.pop(Math.floor(random))
+//console.log(mapschoolspick)
+random = Math.random() * 22;
+chosen2 = mapschools[mapschoolspick[Math.floor(random)]]
+mapschoolspick.pop(Math.floor(random))
+
+
+latlngs = [chosen,chosen2]
+
+
+
+
+polyline = L.polyline(latlngs, {color: 'blue'}).addTo(mymap);
+
+decorator = L.polylineDecorator(polyline, {
+    patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {color:"blue",stroke: true}})}
+    ],color:"blue",fillColor: 'blue'
+}).addTo(mymap);
+
+
+
+
+
+//loadMap().then(data=> {console.log(data)});
+</script>
+</body>
+
+</html>

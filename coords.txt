@@ -1,0 +1,50 @@
+Bethesda Chevy Chase High School
+38.986452,-77.088586
+Montgomery Blair High School
+39.018365,-77.012244
+James Hubert Blake High School
+39.113393,-77.017945
+Winston Churchill High School
+39.043939,-77.173206
+Clarksburg High School
+39.226205,-77.265788
+Damascus High School
+39.282012,-77.210197
+Albert Einstein High School
+39.03931,-77.067289
+Gaithersburg High School
+39.135721,-77.19472
+Walter Johnson High School
+39.025888,-77.129757
+John F. Kennedy High School
+39.065755,-77.038997
+Col. Zadok Magruder High School
+39.131352,-77.118525
+Richard Montgomery High School
+39.079334,-77.146927
+Northwest High School
+39.151665,-77.279615
+Northwood High School
+39.035741,-77.02237
+Paint Branch High School
+39.086363,-76.947634
+Poolesville High School
+39.143382,-77.418722
+Quince Orchard High School
+39.11593,-77.254077
+Rockville High School
+39.086677,-77.11859
+Seneca Valley High School
+39.173936,-77.263658
+Sherwood High School
+39.148323,-77.018527
+Springbrook High School
+39.058208,-77.005891
+Watkins Mill High School
+39.183588,-77.216129
+Wheaton High School
+39.059976,-77.067477
+Walt Whitman High School
+38.981663,-77.127622
+Thomas S. Wootton High School
+39.076736,-77.183236
