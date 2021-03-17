@@ -1,8 +1,10 @@
 * {
     margin:0px;
     padding:0px;
-    font-family: 'Righteous';
+    font-family: "Righteous";
 }
+
+#mapid { height: 100%; width: 100% }
 
 #logo {
     position:fixed;
