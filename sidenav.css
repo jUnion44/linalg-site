@@ -1,6 +1,15 @@
 * {
     margin:0px;
     padding:0px;
+    font-family: 'Righteous';
+}
+
+#logo {
+    position:fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 40px;
+    z-index: 1000000000;
 }
 
 #sidebar {
