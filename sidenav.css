@@ -35,6 +35,7 @@
     border-bottom: 1px solid rgba(65,65,65,0.8);
     transition: all 300ms;
     cursor:pointer;
+    font-family: "Roboto Condensed";
 }
 
 #sidebar ul li.vecname {
@@ -42,6 +43,7 @@
     padding:15px 8px;
     margin-top: 8px;
     cursor:initial;
+    font-family: "Righteous";
 }
 
 #sidebar ul li:not(.vecname):hover {
