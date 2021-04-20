@@ -1,7 +1,8 @@
+<!--Good lick future Patrick and Colin-->
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+  <title>Navecator</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin=""/>
@@ -10,12 +11,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
-  <script src="http://bbecquet.github.io/Leaflet.PolylineDecorator/dist/leaflet.polylineDecorator.js" crossorigin=""></script>
+  <script src="https://bbecquet.github.io/Leaflet.PolylineDecorator/dist/leaflet.polylineDecorator.js" crossorigin=""></script>
   <script src = "colinjavascript.js"></script>
 </head>
 
 <body>
-  <div id="logo"><i class="fas fa-expand-arrows-alt"></i>&nbsp;App Name&trade;</div>
+  <div id="logo"><i class="fas fa-expand-arrows-alt"></i>&nbsp;Navecator&trade;</div>
   <div id="sidebar">
     <div class="toggle-btn" onclick="toggleSidebar()">
         <span class="line1"></span>
@@ -24,13 +25,15 @@
     </div>
     <ul>
         <li class="vecname" style="color:aqua"><i class="fas fa-caret-square-up"></i>&nbsp;Blue</li>
-        <li><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</li>
-        <li><i class="fas fa-minus"></i>&nbsp;&nbsp;Subtract</li>
+        <li onclick="draw(2,1);"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</li>
+        <li onclick="draw(2,-1);"><i class="fas fa-minus"></i>&nbsp;&nbsp;Subtract</li>
         <li class="vecname" style="color:#ff3333"><i class="fas fa-caret-square-up"></i>&nbsp;Red</li>
-        <li><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</li>
-        <li><i class="fas fa-minus"></i>&nbsp;&nbsp;Subtract</li>
+        <li onclick="draw(1,1);"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</li>
+        <li onclick="draw(1,-1);"><i class="fas fa-minus"></i>&nbsp;&nbsp;Subtract</li>
         <li class="vecname" style="color: #ffff80"><i class="fas fa-arrows-alt-h"></i>&nbsp;Transform</li>
         <li style="cursor:not-allowed"><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;In Progress</li>
+		<li class="vecname" style="color: #00ee00"><i class="fas fa-arrows-alt-v"></i>&nbsp;Scale</li>
+		<li style="padding:0"> <input  style="padding: 5px;;height:40px;width:calc(100%)" type="text" name="mult" id="multin" placeholder="Must be a number."></li>
     </ul>
   </div>
   <div id="mapid"></div>
@@ -38,11 +41,11 @@
 
 const coords='Bethesda Chevy Chase High School;38.986452,-77.088586;Montgomery Blair High School;39.018365,-77.012244;James Hubert Blake High School;39.113393,-77.017945;Winston Churchill High School;39.043939,-77.173206;Clarksburg High School;39.226205,-77.265788;Damascus High School;39.282012,-77.210197;Albert Einstein High School;39.03931,-77.067289;Gaithersburg High School;39.135721,-77.19472;Walter Johnson High School;39.025888,-77.129757;John F. Kennedy High School;39.065755,-77.038997;Col. Zadok Magruder High School;39.131352,-77.118525;Richard Montgomery High School;39.079334,-77.146927;Northwest High School;39.151665,-77.279615;Northwood High School;39.035741,-77.02237;Paint Branch High School;39.086363,-76.947634;Poolesville High School;39.143382,-77.418722;Quince Orchard High School;39.11593,-77.254077;Rockville High School;39.086677,-77.11859;Seneca Valley High School;39.173936,-77.263658;Sherwood High School;39.148323,-77.018527;Springbrook High School;39.058208,-77.005891;Watkins Mill High School;39.183588,-77.216129;Wheaton High School;39.059976,-77.067477;Walt Whitman High School;38.981663,-77.127622;Thomas S. Wootton High School;39.076736,-77.183236'
 
-var mymap = L.map('mapid').setView([39.116677,-77.11859], 11.3);
+var mymap = L.map('mapid',{ zoomControl: false }).setView([39.116677,-77.11859], 11.3);
 
   var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap'
+    attribution: 'Â© OpenStreetMap'
   }).addTo(mymap);
 
 var schools = coords.split(";")
@@ -79,6 +82,7 @@ while (start == dest) {
   start = Math.floor(Math.random()*25)
   dest = Math.floor(Math.random()*25)
 }
+var currentcoords = mapschools[schoolnames[start]]
 
 for (var j=0;j<schoolnames.length;j++){
   if (j==start){
@@ -107,6 +111,7 @@ for (var j=0;j<schoolnames.length;j++){
   circle.bindPopup(schoolnames[j]);
   }
 }
+var destcoords = mapschools[schoolnames[dest]]
 
 var random = Math.random() * 25;
 var chosen = mapschools[mapschoolspick[Math.floor(random)]]
@@ -136,10 +141,11 @@ random = Math.random() * 22;
 chosen2 = mapschools[mapschoolspick[Math.floor(random)]]
 mapschoolspick.pop(Math.floor(random))
 
+var vector1 = latlngs
 
 latlngs = [chosen,chosen2]
 
-
+var vector2 = latlngs
 
 
 polyline = L.polyline(latlngs, {color: 'blue'}).addTo(mymap);
@@ -151,6 +157,55 @@ decorator = L.polylineDecorator(polyline, {
     ],color:"blue",fillColor: 'blue'
 }).addTo(mymap);
 
+
+function draw(vnum,scale,a,b,c,d){
+	if (!isNaN(parseFloat(document.getElementById("multin").value))) {
+		scale = scale * parseFloat(document.getElementById("multin").value)
+		console.log(scale)
+	}
+	
+	console.log(scale)
+
+  if (vnum==1){
+    var coordsToMake = [currentcoords,[]]
+    var delta = [(vector1[1][0]-vector1[0][0])*scale + currentcoords[0],(vector1[1][1]-vector1[0][1])*scale + currentcoords[1]]
+    var deltax = delta[0]
+    var deltay = delta[1]
+
+    delta = [a*deltax+b*deltay,c*deltax+d*deltay]
+    coordsToMake[1]=delta
+    polyline = L.polyline(coordsToMake, {color: 'red'}).addTo(mymap);
+    decorator = L.polylineDecorator(polyline, {
+    patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {color:"red",stroke: true}})}
+    ],color:"red",fillColor: 'red'
+    }).addTo(mymap);
+    currentcoords = delta
+  }
+  else if (vnum==2){
+    var coordsToMake = [currentcoords,[]]
+    var delta = [(vector2[1][0]-vector2[0][0])*scale + currentcoords[0],(vector2[1][1]-vector2[0][1])*scale + currentcoords[1]]
+    var deltax = delta[0]
+    var deltay = delta[1]
+
+    delta = [a*deltax+b*deltay,c*deltax+d*deltay]
+    coordsToMake[1]=delta
+    polyline = L.polyline(coordsToMake, {color: 'blue'}).addTo(mymap);
+    decorator = L.polylineDecorator(polyline, {
+    patterns: [
+        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+        {offset: '100%', repeat: 0, symbol: L.Symbol.arrowHead({pixelSize: 15, polygon: false, pathOptions: {color:"blue",stroke: true}})}
+    ],color:"blue",fillColor: 'blue'
+    }).addTo(mymap);
+    currentcoords = delta
+  }
+  
+  if (L.latLng(currentcoords[0],currentcoords[1]).distanceTo(L.latLng(destcoords[0],destcoords[1])) < 500){
+  alert("Close enough")
+  }
+  
+}
 
 
 
