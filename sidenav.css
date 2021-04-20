@@ -82,3 +82,14 @@
 	transform: rotate(45deg) translate(-4.8px, -9.5px);
 }
 
+.inputbar{
+    padding:1px 12px;
+    height:40px;
+}
+
+.inputbar.transformbar{
+    width:calc(50%);
+    float:left;
+    text-align: center;
+    margin: 0;
+}

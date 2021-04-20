@@ -30,10 +30,16 @@
         <li class="vecname" style="color:#ff3333"><i class="fas fa-caret-square-up"></i>&nbsp;Red</li>
         <li onclick="draw(1,1);"><i class="fas fa-plus"></i>&nbsp;&nbsp;Add</li>
         <li onclick="draw(1,-1);"><i class="fas fa-minus"></i>&nbsp;&nbsp;Subtract</li>
-        <li class="vecname" style="color: #ffff80"><i class="fas fa-arrows-alt-h"></i>&nbsp;Transform</li>
-        <li style="cursor:not-allowed"><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;In Progress</li>
-		<li class="vecname" style="color: #00ee00"><i class="fas fa-arrows-alt-v"></i>&nbsp;Scale</li>
-		<li style="padding:0"> <input  style="padding: 5px;;height:40px;width:calc(100%)" type="text" name="mult" id="multin" placeholder="Must be a number."></li>
+        <li class="vecname" style="color: #ffff80;border-bottom: 0px;"><i class="fas fa-arrows-alt-h"></i>&nbsp;Transform</li>
+        <div style = "margin:0px 20px">
+          <input maxlength=2 class = "inputbar transformbar" placeholder="Num"></input>
+          <input maxlength=2 class = "inputbar transformbar" placeholder="Num"></input>
+          <input maxlength=2 class = "inputbar transformbar" placeholder="Num"></input>
+          <input maxlength=2 class = "inputbar transformbar" placeholder="Num"></input>
+        </div>
+        <li style="clear:both;text-align:center;"><i class="fas fa-arrow-up"></i>&nbsp;&nbsp;Enter&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		<li class="vecname" style="color: #00ee00;"><i class="fas fa-arrows-alt-v"></i>&nbsp;Scale</li>
+		<li style="padding: 5px;"> <input class = inputbar style="width:calc(100%);" type="text" name="mult" id="multin" maxlength=10 placeholder="Enter a number"></li>
     </ul>
   </div>
   <div id="mapid"></div>
